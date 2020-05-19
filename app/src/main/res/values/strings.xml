@@ -9,4 +9,8 @@
     <string name="left">left</string>
     <string name="right">right</string>
     <string name="backward">backward</string>
+    <string name="refresh">refresh</string>
+    <string name="disconnect">disconnect</string>
+    <string name="off">off</string>
+    <string name="on">on</string>
 </resources>

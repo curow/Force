@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ControlActivity">
 
     <TextView
         android:id="@+id/connect_text"
@@ -23,12 +23,23 @@
         android:layout_marginBottom="10dp"
         android:clipToPadding="false"
         android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/refresh_button"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/connect_text"
         tools:itemCount="30"
         tools:listitem="@layout/bluetooth_item" />
+
+    <Button
+        android:id="@+id/refresh_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/device_recycler" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

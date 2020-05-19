@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_connect.*
 class ConnectActivity : AppCompatActivity() {
     companion object {
         const val REQUEST_ENABLE_BT = 1
+        const val EXTRA_ADDRESS: String = "Device_address"
     }
 
     private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
@@ -46,8 +47,17 @@ class ConnectActivity : AppCompatActivity() {
                 else
                     viewHolder.itemView.setBackgroundColor(Color.WHITE)
             }
+
+            val address = deviceList[it].address
+            val intent = Intent(this, ControlActivity::class.java)
+            intent.putExtra(EXTRA_ADDRESS, address)
+            startActivity(intent)
         }
-        getPairedDeviceList()
+
+        refresh_button.setOnClickListener {
+            getPairedDeviceList()
+            (device_recycler.adapter as BluetoothItemAdapter).notifyDataSetChanged()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -66,7 +76,9 @@ class ConnectActivity : AppCompatActivity() {
         if (pairedBluetoothDevices?.isEmpty() == false) {
             connect_text.text = getString(R.string.connect_text)
             for (device in pairedBluetoothDevices) {
-                deviceList.add(BluetoothItem(device.name, device.address))
+                val item = BluetoothItem(device.name, device.address)
+                if (item !in deviceList)
+                    deviceList.add(BluetoothItem(device.name, device.address))
             }
         } else {
             toast("no paired bluetooth device found")

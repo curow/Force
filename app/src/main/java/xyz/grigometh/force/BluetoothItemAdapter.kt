@@ -32,7 +32,6 @@ class BluetoothItemAdapter(private val bluetoothList: List<BluetoothItem>, priva
             bluetooth_name.text = item.name
             bluetooth_address.text = item.address
             setOnClickListener {
-                itemView.context.toast("clicked $position, ${bluetooth_name.text}")
                 listener(position)
             }
         }

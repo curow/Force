@@ -6,10 +6,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--
- If your app targets Android 9 or lower, you can declare
-       ACCESS_COARSE_LOCATION instead.
-    -->
 
     <application
         android:allowBackup="true"
@@ -25,9 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ControlActivity"
-            android:parentActivityName=".ConnectActivity">
-        </activity>
+
+        <activity
+            android:name=".ControlActivity"
+            android:parentActivityName=".ConnectActivity" />
+
+        <activity
+            android:name=".TuneParamsActivity"
+            android:parentActivityName=".ConnectActivity" />
     </application>
 
 </manifest>

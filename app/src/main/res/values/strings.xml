@@ -13,4 +13,5 @@
     <string name="disconnect">disconnect</string>
     <string name="off">off</string>
     <string name="on">on</string>
+    <string name="parameter_tuning">Paremeter Tuning</string>
 </resources>

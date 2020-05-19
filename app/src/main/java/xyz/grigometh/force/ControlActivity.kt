@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -37,6 +38,12 @@ class ControlActivity : AppCompatActivity() {
         on_button.setOnClickListener{ sendCommand(byteArrayOf(0x66, 0x03, 0x13))}
         off_button.setOnClickListener{ sendCommand(byteArrayOf(0x66, 0x03, 0x11)) }
         disconnect_button.setOnClickListener{ disconnect() }
+        tune_parameter_button.setOnClickListener{ tuneParameter() }
+    }
+
+    private fun tuneParameter() {
+        val intent = Intent(this, TuneParamsActivity::class.java)
+        startActivity(intent)
     }
 
 

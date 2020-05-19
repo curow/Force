@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Force</string>
+    <string name="discover_devices">discover devices</string>
+    <string name="connect_text">Choose A Paired Device To Connect:</string>
+    <string name="connect">connect</string>
+    <string name="device_search">searching</string>
+</resources>

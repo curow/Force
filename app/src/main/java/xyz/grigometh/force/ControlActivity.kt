@@ -32,11 +32,11 @@ class ControlActivity : AppCompatActivity() {
         address = intent.getStringExtra(ConnectActivity.EXTRA_ADDRESS)!!
 
         ConnectToDevice(this).execute()
-        left_button.setOnClickListener{ sendCommand(byteArrayOf(0x66, 0x04, 0x01, 0x60)) }
-        right_button.setOnClickListener{ sendCommand(byteArrayOf(0x66, 0x04, 0x01, 0x20)) }
-        forward_button.setOnClickListener{ sendCommand(byteArrayOf(0x66, 0x04, 0x03, 0x07))}
-        on_button.setOnClickListener{ sendCommand(byteArrayOf(0x66, 0x03, 0x13))}
-        off_button.setOnClickListener{ sendCommand(byteArrayOf(0x66, 0x03, 0x11)) }
+        left_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x01, 0x60)) }
+        right_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x01, 0x20)) }
+        forward_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x03, 0x07))}
+        on_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x13))}
+        off_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x11)) }
         disconnect_button.setOnClickListener{ disconnect() }
         tune_parameter_button.setOnClickListener{ tuneParameter() }
     }
@@ -44,17 +44,6 @@ class ControlActivity : AppCompatActivity() {
     private fun tuneParameter() {
         val intent = Intent(this, TuneParamsActivity::class.java)
         startActivity(intent)
-    }
-
-
-    private fun sendCommand(bytes: ByteArray) {
-        if (bluetoothSocket!= null) {
-            try{
-                bluetoothSocket!!.outputStream.write(bytes)
-            } catch(e: IOException) {
-                e.printStackTrace()
-            }
-        }
     }
 
 

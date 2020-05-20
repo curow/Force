@@ -13,5 +13,23 @@
     <string name="disconnect">disconnect</string>
     <string name="off">off</string>
     <string name="on">on</string>
-    <string name="parameter_tuning">Paremeter Tuning</string>
+    <string name="parameter_tuning">Parameter Tuning</string>
+    <string name="parameter_select_text">Choose one of the parameters below to fine-tuning</string>
+    <string name="min_speed">Min Speed</string>
+    <string name="max_speed">Max Speed</string>
+    <string name="steer_kd">Steer Kd</string>
+    <string name="steer_ki">Steer Ki</string>
+    <string name="steer_kp">Steer Kp</string>
+    <string name="speed_kd">Speed Kd</string>
+    <string name="speed_ki">Speed Ki</string>
+    <string name="speed_kp">Speed Kp</string>
+    <string name="current_value_text">Current Value:</string>
+    <string name="current_value">100</string>
+<!--    <string name="adjustment_text">After Adjustment:</string>-->
+    <string name="adjustment_text">Offset:</string>
+    <string name="confirm">confirm</string>
+    <string name="increase">increase</string>
+    <string name="decrease">Decrease</string>
+    <string name="log">log</string>
+    <string name="default_adjustment_value">0</string>
 </resources>

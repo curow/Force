@@ -26,9 +26,7 @@
             android:name=".ControlActivity"
             android:parentActivityName=".ConnectActivity" />
 
-        <activity
-            android:name=".TuneParamsActivity"
-            android:parentActivityName=".ConnectActivity" />
+        <activity android:name=".TuneParamsActivity" />
     </application>
 
 </manifest>

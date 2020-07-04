@@ -10,12 +10,31 @@
     <TextView
         android:id="@+id/log_text"
         android:layout_width="319dp"
-        android:layout_height="314dp"
+        android:layout_height="150dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:maxLines = "20"
+        android:scrollbars = "vertical"
+        android:gravity="bottom"
         android:text="@string/log" />
+
+    <io.github.controlwear.virtual.joystick.android.JoystickView
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/joystick"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        custom:JV_buttonColor="#FF6E40"
+        custom:JV_buttonSizeRatio="15%"
+        custom:JV_borderColor="#00796B"
+        custom:JV_backgroundColor="#009688"
+        custom:JV_borderWidth="4dp"
+        custom:JV_fixedCenter="false"
+        custom:layout_constraintTop_toBottomOf="@id/log_text"
+        custom:layout_constraintBottom_toTopOf="@id/toggle_acc_button"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintEnd_toEndOf="parent" />
 
     <ToggleButton
         android:id="@+id/toggle_acc_button"
@@ -29,7 +48,7 @@
         app:layout_constraintEnd_toStartOf="@+id/forward_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_text" />
+        app:layout_constraintTop_toBottomOf="@+id/joystick" />
 
     <ToggleButton
         android:id="@+id/toggle_buzz_button"
@@ -43,8 +62,7 @@
         app:layout_constraintStart_toEndOf="@+id/forward_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_text" />
-
+        app:layout_constraintTop_toBottomOf="@+id/joystick" />
 
     <Button
         android:id="@+id/forward_button"
@@ -54,7 +72,7 @@
         android:text="@string/forward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log_text" />
+        app:layout_constraintTop_toBottomOf="@+id/joystick" />
 
     <ToggleButton
         android:id="@+id/on_off_button"
@@ -96,7 +114,7 @@
 
     <Button
         android:id="@+id/backward_button"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="backward"

@@ -25,11 +25,10 @@
     <string name="speed_kp">Speed Kp</string>
     <string name="current_value_text">Current Value:</string>
     <string name="current_value">100</string>
-<!--    <string name="adjustment_text">After Adjustment:</string>-->
     <string name="adjustment_text">Offset:</string>
     <string name="confirm">confirm</string>
     <string name="increase">increase</string>
     <string name="decrease">Decrease</string>
-    <string name="log">log</string>
     <string name="default_adjustment_value">0</string>
+    <string name="log">log</string>
 </resources>

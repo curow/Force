@@ -7,11 +7,12 @@ import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_control.*
 import java.io.IOException
+import java.lang.StringBuilder
 import java.util.*
 
 
@@ -24,6 +25,7 @@ class ControlActivity : AppCompatActivity() {
         lateinit var bluetoothAdapter: BluetoothAdapter
         var isConnected: Boolean = false
         lateinit var address: String
+        var log: StringBuilder = StringBuilder()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +34,49 @@ class ControlActivity : AppCompatActivity() {
         address = intent.getStringExtra(ConnectActivity.EXTRA_ADDRESS)!!
 
         ConnectToDevice(this).execute()
-        left_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x01, 0x60)) }
-        right_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x01, 0x20)) }
-        forward_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x03, 0x07))}
-        on_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x13))}
-        off_button.setOnClickListener{ sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x11)) }
-        disconnect_button.setOnClickListener{ disconnect() }
+        left_button.setOnClickListener{
+            sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x01, 0x60))
+            updateLog("send 0x66 0x04 0x01 0x60, vehicle turn left")
+        }
+        right_button.setOnClickListener{
+            sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x01, 0x20))
+            updateLog("send 0x66 0x04 0x01 0x20, vehicle turn right")
+        }
+        forward_button.setOnClickListener{
+            sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x04, 0x03, 0x07))
+            updateLog("send 0x66 0x04 0x03 0x07, vehicle forward")
+        }
+        backward_button.setOnClickListener{
+            sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x15))
+            updateLog("send 0x66 0x03 0x15, vehicle backward")
+        }
+        on_off_button.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x13))
+                updateLog("send 0x66 0x03 0x13, vehicle on")
+            } else {
+                sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x11))
+                updateLog("send 0x66 0x03 0x11, vehicle off")
+            }
+        }
+        toggle_acc_button.setOnCheckedChangeListener { _, isChecked ->
+            sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x17))
+            updateLog("send 0x66 0x03 0x17, acc ${if (isChecked) "on" else "off"}")
+        }
+        toggle_buzz_button.setOnCheckedChangeListener { _, isChecked ->
+            sendCommand(bluetoothSocket, byteArrayOf(0x66, 0x03, 0x07))
+            updateLog("send 0x66 0x03 0x07, buzz ${if (isChecked) "on" else "off"}")
+        }
+        disconnect_button.setOnClickListener{
+            disconnect()
+            updateLog("disconnect from vehicle")
+        }
         tune_parameter_button.setOnClickListener{ tuneParameter() }
+    }
+
+    private fun updateLog(s: String) {
+        log.append(s)
+        log_text.text = log.toString()
     }
 
     private fun tuneParameter() {
